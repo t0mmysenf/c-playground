@@ -1,0 +1,41 @@
+//devcontainer.json
+{
+    "name": "C-Dev",
+    "image": "mcr.microsoft.com/devcontainers/universal:latest",
+    "customizations": {
+        "vscode": {
+        "settings": {
+            "cmake.cCompiler": "/usr/bin/gcc",
+            "cmake.cppCompiler": "/usr/bin/g++",
+            "launch.configurations": [
+                {
+                    "name": "Run Project",
+                    "type": "cppdbg",
+                    "request": "launch",
+                    "program": "${command:cmake.launchTargetPath}",
+                    "stopAtEntry": false,
+                    "cwd": "${command:cmake.launchTargetDirectory}",
+                    "environment": [],
+                    "externalConsole": false,
+                    "MIMode": "gdb",
+                    "setupCommands": [
+                        {
+                            "description": "Enable pretty-printing for gdb",
+                            "text": "-enable-pretty-printing",
+                            "ignoreFailures": true
+                        }
+                    ]
+                }
+            ]
+            
+        },
+        "extensions": [
+                "ms-vscode.cpptools-extension-pack",
+                "isudox.vscode-jetbrains-keybindings",
+                "ms-vscode.cmake-tools"
+            ]
+        }
+    },
+
+    "postCreateCommand": "sudo apt-get update"
+}
